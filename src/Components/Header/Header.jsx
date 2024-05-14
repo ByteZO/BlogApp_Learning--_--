@@ -1,8 +1,76 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { Container, Button, Logo } from "../index";
 
 const Header = () => {
-  return <> Header</>;
+  const authStatus = useSelector((state) => state.auth.status);
+  const navigate = useNavigate();
+  const navItems = [
+    {
+      name: "Home",
+      slug: "/",
+      active: true,
+    },
+    {
+      name: "Loin",
+      slug: "/login",
+      active: !authStatus,
+    },
+    {
+      name: "SignUp",
+      slug: "/login",
+      active: !authStatus,
+    },
+    {
+      name: "All Post ",
+      slug: "/all-post",
+      active: authStatus,
+    },
+    {
+      name: "Add Post",
+      slug: "/add-post",
+      active: authStatus,
+    },
+  ];
+
+  return (
+    <>
+      <header className="py-3 shadow bg-gray-500">
+        <Container>
+          <nav className="flex">
+            <div className="mr-4">
+              <Link to="/">
+                <Logo />
+              </Link>
+            </div>
+            <div>
+              <ul className="flex ml-auto">
+                {navItems.map((items) =>
+                  items.active ? (
+                    <li key={items.name}>
+                      <button
+                        className="inline-bock px-6 py-2 duration-200 hover:bg-blue-100 rounded-full"
+                        onClick={() => navigate(items.slug)}
+                      >
+                        {items.name}
+                      </button>
+                    </li>
+                  ) : null
+                )}
+
+                {authStatus && (
+                  <li>
+                    <Button />
+                  </li>
+                )}
+              </ul>
+            </div>
+          </nav>
+        </Container>
+      </header>
+    </>
+  );
 };
 
 export default Header;

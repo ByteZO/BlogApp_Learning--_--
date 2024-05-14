@@ -14,11 +14,8 @@ function App() {
       .then((useData) => {
         useData ? Dispatch(logIn(useData)) : Dispatch(logOut());
       })
-      .catch((response) => {
-        console.log(
-          "The Error will Checking that you Are logged IN ",
-          response
-        );
+      .catch((error) => {
+        console.log("The Error will Checking that you Are logged IN ", error);
       })
       .finally(() => setLoading(false));
   });
@@ -33,7 +30,9 @@ function App() {
         <Footer />
       </div>
     </div>
-  ) : null;
+  ) : (
+    "Hello"
+  );
 }
 
 export default App;
