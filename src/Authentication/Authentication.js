@@ -1,6 +1,7 @@
 import { Client, Account, ID } from "appwrite";
 import Config from "../Config/Config";
 
+
 class Auth {
   client = new Client();
   account;
