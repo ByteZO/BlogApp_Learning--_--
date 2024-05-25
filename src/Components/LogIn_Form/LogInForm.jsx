@@ -1,6 +1,6 @@
 import React from "react";
 import Authentication from "../../Authentication/Authentication";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logIn } from "../../Store/AuthSlice";
 import { useForm } from "react-hook-form";
@@ -10,7 +10,6 @@ import LogInBtn from "../Buttons/LogInBtn";
 
 export const LogInForm = () => {
   const Dispatch = useDispatch();
-  const Selector = useSelector();
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
   const [Error, setError] = useState("");
